@@ -26,7 +26,7 @@ module.exports = {
     ],
   },
   resolve: {
-    // 这里只配置js, tsx和ts，其他文件引入都要求带后缀，可以提升构建速度
+    // 打包时自动补引入文件后缀，可以提升构建速度
     extensions: [".js", ".tsx", ".ts"],
   },
   plugins: [
