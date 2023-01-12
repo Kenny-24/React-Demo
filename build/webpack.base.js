@@ -13,15 +13,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /.(css|less)$/, // 匹配 css 文件
+        // style-loader: 把解析后的css代码从js中抽离,放到头部的style标签中(在运行时做的)
+        // css-loader: 解析css文件代码
+        // loader从右往左执行
+        // postcss-loader就是来给css3加浏览器前缀，兼容低版本浏览器
+        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+      },
+      {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: {
-          loader: "babel-loader",
-          options: {
-            // webpack默认只能识别js文件，不能识别jsx语法，将ts/tsx装成js/jsx，再将jsx转成js
-            // 预设执行顺序由右往左,所以先处理ts,再处理jsx
-            presets: ["@babel/preset-react", "@babel/preset-typescript"],
-          },
-        },
+        use: "babel-loader",
       },
     ],
   },
@@ -36,3 +37,8 @@ module.exports = {
     }),
   ],
 };
+
+// 例子
+// console.log('NODE_ENV', process.env.NODE_ENV) production
+// console.log('BASE_ENV', process.env.BASE_ENV) development
+// 当前是打包模式,业务环境是开发环境
