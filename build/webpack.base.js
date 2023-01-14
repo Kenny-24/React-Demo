@@ -24,6 +24,20 @@ module.exports = {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         use: "babel-loader",
       },
+      //处理图片文件
+      {
+        test: /.(png|jpg|jpeg|gif|svg)$/, // 匹配图片文件
+        type: "asset", // type选择asset
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024, // 小于10kb转base64位
+            // 减少一个图片的 HTTP 请求，CSS 文件体积的增大，CSS 会阻塞渲染，而图片不会，有利有弊
+          },
+        },
+        generator: {
+          filename: "static/images/[name][ext]", // 文件输出目录和命名
+        },
+      },
     ],
   },
   resolve: {
