@@ -1,4 +1,6 @@
 // webpack.base.js
+// module 是 webpack 资源处理的基本单位
+// webpack 生成module 一个入口文件及其依赖结合成一个对应的chunk 其中动态引入文件生产一个对应的chunk
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -9,6 +11,9 @@ module.exports = {
     path: path.join(__dirname, "../dist"), // 打包结果输出路径
     clean: true, // webpack4需要配置clean-webpack-plugin来删除dist文件,webpack5内置了
     publicPath: "/", // 打包后文件的公共前缀路径
+  },
+  cache: {
+    type: "filesystem", // 使用文件缓存 来缓存生成的module、chunk
   },
   module: {
     rules: [
