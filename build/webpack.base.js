@@ -87,6 +87,7 @@ module.exports = {
     alias: {
       "@": path.join(__dirname, "../src"), // 减少路径复杂度
     },
+    modules: [path.resolve(__dirname, "../node_modules")], // 查找第三方模块只在本项目的node_modules中查找
   },
   plugins: [
     new HtmlWebpackPlugin({
