@@ -72,6 +72,9 @@ module.exports = {
   resolve: {
     // 打包时自动补引入文件后缀，可以提升构建速度
     extensions: [".js", ".tsx", ".ts"],
+    alias: {
+      "@": path.join(__dirname, "../src"), // 减少路径复杂度
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

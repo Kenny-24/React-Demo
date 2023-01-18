@@ -1,10 +1,10 @@
 import React from "react";
-import Class from "./components/Class";
-import "./app.css";
-import "./app.less";
-import smallImg from "./assets/imgs/2k.png";
-import bigImg from "./assets/imgs/60k.png";
-import Input from "./components/Input";
+import Class from "@/components/Class";
+import "@/app.css";
+import "@/app.less";
+import smallImg from "@/assets/imgs/2k.png";
+import bigImg from "@/assets/imgs/60k.png";
+import Input from "@/components/Input";
 function App() {
   return (
     // Class组件
