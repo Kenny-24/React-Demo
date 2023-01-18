@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: "babel-loader",
+        use: ["thread-loader", "babel-loader"], // thread-loader开启多线程loader，开启多线程也是需要启动时间,大约600ms左右，所以适合规模比较大的项目
       },
       //处理图片文件
       {
