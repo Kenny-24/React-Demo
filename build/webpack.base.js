@@ -26,6 +26,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
       },
       {
+        include: [path.resolve(__dirname, "../src")], // 只对项目src文件的ts,tsx进行loader解析，exclude为不去解析的（优先级高）
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         use: ["thread-loader", "babel-loader"], // thread-loader开启多线程loader，开启多线程也是需要启动时间,大约600ms左右，所以适合规模比较大的项目
       },
