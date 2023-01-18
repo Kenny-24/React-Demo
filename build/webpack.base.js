@@ -16,15 +16,26 @@ module.exports = {
     type: "filesystem", // 使用文件缓存 来缓存生成的module、chunk
   },
   module: {
+    // rules数组倒序遍历
     rules: [
       {
-        test: /.(css|less)$/, // 匹配 css 文件
-        // style-loader: 把解析后的css代码从js中抽离,放到头部的style标签中(在运行时做的)
-        // css-loader: 解析css文件代码
-        // loader从右往左执行
-        // postcss-loader就是来给css3加浏览器前缀，兼容低版本浏览器
+        test: /.css$/, //匹配所有的 css 文件
+        include: [path.resolve(__dirname, "../src")],
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
+        test: /.less$/, //匹配所有的 less 文件
+        include: [path.resolve(__dirname, "../src")],
         use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
       },
+      // {
+      //   test: /.(css|less)$/, // 匹配 css 文件
+      //   // style-loader: 把解析后的css代码从js中抽离,放到头部的style标签中(在运行时做的)
+      //   // css-loader: 解析css文件代码
+      //   // loader从右往左执行
+      //   // postcss-loader就是来给css3加浏览器前缀，兼容低版本浏览器
+      //   use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+      // },
       {
         include: [path.resolve(__dirname, "../src")], // 只对项目src文件的ts,tsx进行loader解析，exclude为不去解析的（优先级高）
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
