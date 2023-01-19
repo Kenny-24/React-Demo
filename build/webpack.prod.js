@@ -28,7 +28,7 @@ module.exports = merge(baseConfig, {
     }),
     // 抽离css插件
     new MiniCssExtractPlugin({
-      filename: "static/css/[name].css", // 抽离css的输出目录和名称
+      filename: "static/css/[name].[contenthash:8].css", // 抽离css的输出目录和名称，加上[contenthash:8]
     }),
   ],
   optimization: {
