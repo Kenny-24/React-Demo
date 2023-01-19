@@ -8,6 +8,8 @@ const baseConfig = require("./webpack.base.js");
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
 module.exports = merge(baseConfig, {
   mode: "production", // 生产模式,会开启tree-shaking和压缩代码,以及其他优化
   plugins: [
@@ -32,6 +34,16 @@ module.exports = merge(baseConfig, {
   optimization: {
     minimizer: [
       new CssMinimizerPlugin(), // 压缩css
+      new TerserPlugin({
+        // 压缩js，设置mode为production时,webpack会使用内置插件terser-webpack-plugin压缩js文件,
+        // 该插件默认支持多线程压缩，但是上面配置optimization.minimizer压缩css后，js压缩就失效了，需要手动再添加一下
+        parallel: true, // 开启多线程压缩
+        terserOptions: {
+          compress: {
+            pure_funcs: ["console.log"], // 删除console.log
+          },
+        },
+      }),
     ],
   },
 });
