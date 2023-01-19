@@ -29,4 +29,9 @@ module.exports = merge(baseConfig, {
       filename: "static/css/[name].css", // 抽离css的输出目录和名称
     }),
   ],
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(), // 压缩css
+    ],
+  },
 });
