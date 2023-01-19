@@ -3,6 +3,8 @@
 // webpack 生成module 一个入口文件及其依赖结合成一个对应的chunk 其中动态引入文件生产一个对应的chunk
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const isDev = process.env.NODE_ENV === "development"; // 是否是开发模式
 
 module.exports = {
   entry: path.join(__dirname, "../src/index.tsx"), // 入口文件
@@ -21,12 +23,21 @@ module.exports = {
       {
         test: /.css$/, //匹配所有的 css 文件
         include: [path.resolve(__dirname, "../src")],
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: [
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader, // 开发环境使用style-looader,打包模式抽离css
+          "css-loader",
+          "postcss-loader",
+        ],
       },
       {
         test: /.less$/, //匹配所有的 less 文件
         include: [path.resolve(__dirname, "../src")],
-        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+        use: [
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader, // 开发环境使用style-looader,打包模式抽离css
+          "css-loader",
+          "postcss-loader",
+          "less-loader",
+        ],
       },
       // {
       //   test: /.(css|less)$/, // 匹配 css 文件
