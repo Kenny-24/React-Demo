@@ -44,18 +44,20 @@ function App() {
   const [show, setShow] = useState(false);
 
   const onClick = () => {
-    setShow(true);
+    setShow(!show);
   };
   return (
     <>
-      <h2 onClick={onClick}>展示</h2>
+      <h2>
+        <span onClick={onClick}>展示</span>
+      </h2>
       {/* show为true时加载组件 */}
       {show && (
         <>
-          <Suspense fallback={null}>
+          <Suspense fallback={<p>Loading PreloadDemo...</p>}>
             <PreloadDemo />
           </Suspense>
-          <Suspense fallback={null}>
+          <Suspense fallback={<p>Loading PreFetchDemo...</p>}>
             <PreFetchDemo />
           </Suspense>
         </>

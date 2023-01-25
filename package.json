@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "react",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development BASE_ENV=development webpack serve -c build/webpack.dev.js",
     "dev:dev": "cross-env NODE_ENV=development BASE_ENV=development webpack-dev-server -c build/webpack.dev.js",
