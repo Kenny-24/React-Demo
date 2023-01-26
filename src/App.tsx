@@ -5,7 +5,7 @@ import "@/app.less";
 import smallImg from "@/assets/imgs/2k.png";
 import bigImg from "@/assets/imgs/60k.png";
 import Input from "@/components/Input";
-
+import TextInputWithFocusButton from "@/components/Funcbtn";
 // prefetch
 const PreFetchDemo = lazy(
   () =>
@@ -60,6 +60,7 @@ function App() {
           <Suspense fallback={<p>Loading PreFetchDemo...</p>}>
             <PreFetchDemo />
           </Suspense>
+          <TextInputWithFocusButton />
         </>
       )}
     </>
