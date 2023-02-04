@@ -5,7 +5,9 @@ import "@/app.less";
 import smallImg from "@/assets/imgs/2k.png";
 import bigImg from "@/assets/imgs/60k.png";
 import Input from "@/components/Input";
-import TextInputWithFocusButton from "@/components/Funcbtn";
+import TextInputWithFocusButton from "@/components/Func";
+import Welcome from "@/components/Storecomponent";
+
 // prefetch
 const PreFetchDemo = lazy(
   () =>
@@ -54,6 +56,7 @@ function App() {
       {/* show为true时加载组件 */}
       {show && (
         <>
+          <Welcome />
           <Suspense fallback={<p>Loading PreloadDemo...</p>}>
             <PreloadDemo />
           </Suspense>
